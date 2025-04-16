@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using pruebaMobiles.data;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
@@ -27,10 +28,18 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapSwagger();
 app.UseSwaggerUI();
+
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
+    try
+    {
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"❌ Error al aplicar migración: {ex.Message}");
+    }
 }
 
 app.Run();
