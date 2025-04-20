@@ -4,9 +4,6 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-# Línea clave para OpenShift:
-ENV ASPNETCORE_URLS=http://+:8080
-
 # SDK de .NET 8 para compilar el proyecto
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -26,5 +23,8 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Aquí se ejecuta tu app
+# ✅ Aquí es donde debe ir la línea:
+ENV ASPNETCORE_URLS=http://+:8080
+
+# Ejecuta la app
 ENTRYPOINT ["dotnet", "pruebaMobiles.dll"]
