@@ -10,10 +10,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddSwaggerGen();
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(8080); // Para que funcione en OpenShift
-});
 
 var app = builder.Build();
 
