@@ -15,7 +15,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     // GET: /WeatherForecast/prueba
-    [HttpGet("prueba")]
+    [HttpGet("prueba1")]
     public async Task<ActionResult<List<prueba>>> Get()
     {
         var resultados = await _context.prueba.ToListAsync();
