@@ -3,15 +3,17 @@ name: Build in OpenShift on Push
 on:
   push:
     branches:
-      - main
+      - main # o master, según tu rama principal
 
 jobs:
-  trigger-build:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 🔁 Disparar webhook de OpenShift
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Trigger OpenShift build
         run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            https://api.rm1.0a51.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/brayan3312-dev/buildconfigs/prueba-mobiles-git/webhooks/09eb7a46d787cb4c/generic
+          curl -X POST "https://api.rm1.0a51.p1.openshiftapps.com:6443/apis/build.openshift.io/v1/namespaces/brayan3312-dev/buildconfigs/prueba-mobiles-git/webhooks/3dee5ff64cb76a92/github" \
+            -H "X-GitHub-Event: push" \
+            -H "Content-Type: application/json"
