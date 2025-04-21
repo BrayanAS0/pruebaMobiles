@@ -9,7 +9,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("c", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173") 
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -36,11 +44,10 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine($"❌ Error al aplicar : {ex.Message}");
 
     } 
-    //
+    
 }
 
-//
-//
-//}kñklññl
+
+app.UseCors("c");
 
 app.Run();
