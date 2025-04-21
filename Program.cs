@@ -36,7 +36,7 @@ using (var scope = app.Services.CreateScope())
         Console.WriteLine($"❌ Error al aplicar : {ex.Message}");
 
     } 
-
+    //
 }
 
 //
