@@ -33,7 +33,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Console.WriteLine($"❌ Error al aplicar migración: {ex.Message}");
+        Console.WriteLine($"❌ Error al aplicar : {ex.Message}");
     } 
 
 }
