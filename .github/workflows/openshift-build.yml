@@ -3,7 +3,7 @@ name: Build in OpenShift on Push
 on:
   push:
     branches:
-      - main # Cambia esto si tu rama se llama diferente
+      - master
 
 jobs:
   build:
