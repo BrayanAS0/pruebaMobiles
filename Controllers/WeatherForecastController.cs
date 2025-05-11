@@ -14,8 +14,15 @@ public class WeatherForecastController : ControllerBase
         _context = context;
     }
 
-    // GET: /WeatherForecast/prueba
+    /// <summary>
+    /// dsadas
+    /// </summary>
+    /// <remarks>
+    /// sadkjsdklasdkjlkjsda
+    /// </remarks>
+
     [HttpGet("prueba1")]
+
     public async Task<ActionResult<List<prueba>>> Get()
     {
         var resultados = await _context.prueba.ToListAsync();
