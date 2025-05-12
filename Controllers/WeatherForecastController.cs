@@ -14,12 +14,7 @@ public class WeatherForecastController : ControllerBase
         _context = context;
     }
 
-    /// <summary>
-    /// dsadas
-    /// </summary>
-    /// <remarks>
-    /// sadkjsdklasdkjlkjsda
-    /// </remarks>
+
 
     [HttpGet("prueba1")]
 
