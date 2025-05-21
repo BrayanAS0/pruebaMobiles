@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using pruebaMobiles.data;
 using pruebaMobiles.DTOs.UserDto;
 using pruebaMobiles.Entities;
 
@@ -19,19 +18,19 @@ public class UserController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<User>>> getUser()
     {
-        var data = await _context.User.ToListAsync();
+        var data = await _context.Users.ToListAsync();
         return Ok(data);
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateUser(CreateUserDto user)
+    public async Task<ActionResult> CreateUser(CreateUserDto User)
     {
-        var existUser = await _context.User.AnyAsync(x => x.name == user.name);
+        var existUser = await _context.Users.AnyAsync(x => x.Name == User.name);
 
         if (existUser)
             return Conflict("El nombre de usuario ya existe.");
-        var newUser = new User { name = user.name, password = user.password };
-        await _context.User.AddAsync(newUser);
+        var newUser = new User { Name = User.name, Password = User.password };
+        await _context.Users.AddAsync(newUser);
         await _context.SaveChangesAsync();
 
         return Ok("Usuario agregado exitosamente.");
@@ -39,14 +38,21 @@ public class UserController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<ActionResult<User>> GetUserById(int id)
     {
-        var user = await _context.User.FindAsync(id); 
+        var User = await _context.Users.FindAsync(id); 
 
-        if (user == null)
+        if (User == null)
             return NotFound($"No se encontró un usuario con el id {id}.");
 
-        return Ok(user);
+        return Ok(User);
     }
 
+    [HttpGet("{usuario}/{contraseña}")]
+    public async Task<ActionResult> Login(string usuario,string contraseña)
+    {
+        var User = await _context.Users.FirstOrDefaultAsync(x => x.Name == usuario && x.Password == contraseña);
+
+        return Ok(User);
+    }
 
 
 }

@@ -1,18 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pruebaMobiles.Entities;
 
-namespace pruebaMobiles.data
+public class AppDbContext : DbContext
 {
-    public class AppDbContext : DbContext
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<prueba> prueba { get; set; }
-        public DbSet<User> User { get; set; }
-
     }
 
+    public DbSet<User> Users { get; set; }
+    public DbSet<Material> Materials { get; set; }
+    public DbSet<Movement> Movements { get; set; }
 }

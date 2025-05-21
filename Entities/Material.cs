@@ -1,22 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using pruebaMobiles.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace pruebaMobiles.Entities
+public class Material
 {
-    public class Material
-    {
-        public int id { get; set; }
+    public int Id { get; set; }
 
-        [Required]
-        public string name { get; set; }
+    [Required]
+    public string Name { get; set; }
 
-        public string description { get; set; }
+    public string Description { get; set; }
 
-        [Required]
-        public int quantity { get; set; } 
+    [Required]
+    public int Quantity { get; set; }
 
-        [Required]
-        public int ideal_quantity { get; set; } 
+    [Required]
+    public int IdealQuantity { get; set; }
 
-        public ICollection<Movement> movements { get; set; }
-    }
+    public ICollection<Movement> Movements { get; set; }
 }

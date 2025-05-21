@@ -1,20 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using pruebaMobiles.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace pruebaMobiles.Entities
+public class User
 {
-    public class User
-    {
-        public int id { get; set; }
-        [Required]
-        [MinLength(1)]
-        public string name {set;get;}
-        [Required]
-        [MinLength(1)]
+    public int Id { get; set; }
 
-        public string password { set; get; }
-        public ICollection<Movement> movements { get; set; }
+    [Required]
+    [MinLength(1)]
+    public string Name { get; set; }
 
-    }
+    [Required]
+    [MinLength(1)]
+    public string Password { get; set; }
 
-
+    public ICollection<Movement> Movements { get; set; }
 }
