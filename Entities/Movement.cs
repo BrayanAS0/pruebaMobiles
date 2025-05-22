@@ -18,5 +18,4 @@ public class Movement
     [Required]
     public int QuantityChanged { get; set; }
 
-    public string Notes { get; set; }
 }

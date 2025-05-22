@@ -12,8 +12,7 @@ public class Material
     [Required]
     public int Quantity { get; set; }
 
-    [Required]
-    public int IdealQuantity { get; set; }
+
 
     public ICollection<Movement> Movements { get; set; }
 }
