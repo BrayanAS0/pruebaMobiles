@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using pruebaMobiles.Entities;
 
 public class AppDbContext : DbContext
 {

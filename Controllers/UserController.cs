@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pruebaMobiles.DTOs.UserDto;
-using pruebaMobiles.Entities;
 
 namespace pruebaMobiles.Controllers;
 [ApiController]

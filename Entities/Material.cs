@@ -1,5 +1,4 @@
-﻿using pruebaMobiles.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 public class Material
 {
