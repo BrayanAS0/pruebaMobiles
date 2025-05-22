@@ -38,7 +38,7 @@ namespace pruebaMobiles.Controllers
                 UserId = movementDto.UserId,
                 MaterialId = movementDto.MaterialId,
                 Date = movementDto.Date,
-                QuantityChanged = movementDto.QuantityChanged,
+                QuantityChanged = movementDto.QuantityChanged- movementDto.RealQuantity  ,
             };
 
             await _context.Movements.AddAsync(movement);
@@ -46,21 +46,21 @@ namespace pruebaMobiles.Controllers
             return Ok(true);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> EditMovement(int id, [FromBody] CreateMovementDto movementDto)
-        {
-            var movement = await _context.Movements.FindAsync(id);
-            if (movement == null) return NotFound();
+        //[HttpPut("{id}")]
+        //public async Task<ActionResult> EditMovement(int id, [FromBody] CreateMovementDto movementDto)
+        //{
+        //    var movement = await _context.Movements.FindAsync(id);
+        //    if (movement == null) return NotFound();
 
-            movement.UserId = movementDto.UserId;
-            movement.MaterialId = movementDto.MaterialId;
-            movement.Date = movementDto.Date;
-            movement.QuantityChanged = movementDto.QuantityChanged;
+        //    movement.UserId = movementDto.UserId;
+        //    movement.MaterialId = movementDto.MaterialId;
+        //    movement.Date = movementDto.Date;
+        //    movement.QuantityChanged = movementDto.QuantityChanged;
 
-            _context.Movements.Update(movement);
-            await _context.SaveChangesAsync();
-            return Ok(true);
-        }
+        //    _context.Movements.Update(movement);
+        //    await _context.SaveChangesAsync();
+        //    return Ok(true);
+        //}
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMovement(int id)
