@@ -37,7 +37,7 @@ namespace pruebaMobiles.Controllers
             {
                 UserId = movementDto.UserId,
                 MaterialId = movementDto.MaterialId,
-                Date = movementDto.Date,
+                Date = DateTime.UtcNow,
                 QuantityChanged = movementDto.QuantityChanged- movementDto.RealQuantity  ,
             };
 
